@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <script src="https://unpkg.com/vue@3"></script>
+
+  <div id="app">
+    <p>Using text interpolation: {{ rawHtml }}</p>
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+    <p v-if="seen">v-if - Now you see me</p>
+    <p v-show="seen">v-show - Now you see me</p>
+    <p v-once>{{content}} - {{changeContent()}}</p>
+    <hr>
+
+    <p>Attribute bindings: 
+      <span :id="dynamicId">Div</span>
+      <button :disabled="isButtonDisabled">Button</button>
+      <a :href="google">Google</a>
+      <span :title="toTitleDate(date)">
+        {{ formatDate() }}
+      </span>
+    </p>
+    <p>
+      <div v-bind="objectOfAttrs">Multi attr binding</div>
+    </p>
+    <p>
+      JavaScript Expressions (chỉ BIỂU THỨC mới hoạt động):
+      {{ number + 1 }}
+      {{ ok ? 'YES' : 'NO' }}
+    </p>
+    <hr>
+    
+    <p>
+      <button @click="number++">Click me to number++</button>
+    </p>
+  </div>
+
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          rawHtml: '<span style="color: red">This should be red.</span>',
+          dynamicId: '_dynamicId',
+          isButtonDisabled: true,
+          objectOfAttrs: {
+            id: 'container',
+            class: 'wrapper'
+          },
+          number: 1,
+          seen: true,
+          google: 'https://google.com',
+          facebook: 'https://facebook.com',
+          date: new Date(),
+          content: 'Content'
+        }
+      },
+      methods: {
+        toTitleDate() {
+          return 'Binding title & call function'
+        },
+        formatDate() {
+          return this.date
+        },
+        changeContent() {
+          this.content = 'Content đã được cập nhật'
+          return this.content
+        }
+      }
+    }).mount('#app')
+  </script>
+  
+</body>
+</html>
