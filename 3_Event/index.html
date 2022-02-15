@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script src="https://unpkg.com/vue@3"></script>
+
+  <div id="app">
+    <h3>Mouse event</h3>
+    <!-- variable -->
+    <button @click="couter++">Click me!</button>
+    <p>Couter: {{couter}}</p>
+
+    <!-- function -->
+    <button @mouseover="greet()">Hover me!</button>
+
+    <!-- function param -->
+    <button @mouseout="say('hello')">Mouseout to Say hello</button>
+    <button @mouseout="say('bye')">Mouseout to Say bye</button>
+
+    <!-- using $event special variable -->
+    <button @click="warn('Form cannot be submitted yet.', $event)">
+      Submit
+    </button>
+
+    <!-- using $event as arrow function -->
+    <button @click="(event) => warn('Form cannot be submitted yet.', event)">
+      Submit
+    </button>
+
+   
+    <p>
+      <!-- .stop .prevent .self .capture .once .passive -->
+      <!-- the submit event will no longer reload the page -->
+      <a href="https://google.com" @click.prevent>Prevent</a>
+    </p>
+
+    <hr>
+
+    <h3>Keyboard event</h3>
+    <input @keyup="keyupFunc" placeholder="Keyup event"/>
+    <input @keyup.page-down="kupdownFunc" placeholder="Pagedown event"/>
+    <input @keyup.alt.enter="clear" placeholder="alt + enter"/>
+    <div @click.ctrl="ctrlClick">Click + trl</div>
+
+    <!-- chỉ khi nhấn 1 phím ctrl và không nhấn phím nào khác -->
+    <button @click.ctrl.exact="onCtrlClick">A</button>
+  </div>
+
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          couter: 0,
+          name: 'Sơn Nguyễn'
+        }
+      },
+      methods: {
+        greet(event) {
+          alert(`Hello ${this.name}!`)
+        },
+        say(message) {
+          alert(message)
+        },
+        warn(message, event) {
+          alert(message)
+        },
+        stop() {
+          alert('Stop')
+        },
+        keyupFunc() {
+          alert('Trigger Keyup Event')
+        },
+        kupdownFunc() {
+          alert('Trigger Keyup->Page down Event')
+        },
+        clear() {
+          alert('Clear')
+        },
+        ctrlClick() {
+          alert('Ctrl + click')
+        },
+        onCtrlClick() {
+          alert('onCtrlClick')
+        }
+      }
+    }).mount('#app')
+  </script>
+
+</body>
+
+</html>

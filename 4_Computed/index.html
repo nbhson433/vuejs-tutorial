@@ -11,23 +11,21 @@
   <script src="https://unpkg.com/vue@3"></script>
 
   <div id="app">
-    <input type="text" value="" @input="changeValue">
-    <input type="text" value="" v-model="message">
-    {{ message }}
+    
   </div>
 
   <script>
     Vue.createApp({
       data() {
         return {
-          message: 'Hello Vue!',
-          rawHtml: '<h1>Hello</h1>'
+          
         }
       },
+      computed: {
+        // computed chạy trước methods
+      },
       methods: {
-        changeValue: function(event) {
-          this.message = event.target.value
-        }
+        
       }
     }).mount('#app')
   </script>
