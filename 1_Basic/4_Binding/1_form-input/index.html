@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <script src="https://unpkg.com/vue@3"></script>
+
+  <div id="app">
+
+    <p>Message is: {{ message }}</p>
+    <input v-model="message" placeholder="edit me" />
+    <hr>
+
+    <span>Multiline message is:</span>
+    <p style="white-space: pre-line;">{{ message }}</p>
+    <textarea v-model="message" placeholder="add multiple lines"></textarea>
+    <hr>
+
+    <input type="checkbox" v-model="checked" />
+    <label for="checkbox">{{ checked }}</label>
+
+    <div>Checked names: {{ checkedNames }}</div>
+    <input type="checkbox" value="Jack" v-model="checkedNames">
+    <label for="jack">Jack</label>
+
+    <input type="checkbox" value="John" v-model="checkedNames">
+    <label for="john">John</label>
+
+    <input type="checkbox" value="Mike" v-model="checkedNames">
+    <label for="mike">Mike</label>
+    <hr>
+    
+    <div>Picked: {{ picked }}</div>
+    <input type="radio" value="One" v-model="picked" />
+    <label for="one">One</label>
+
+    <input type="radio" value="Two" v-model="picked" />
+    <label for="two">Two</label>
+    <hr>
+
+    <div>Selected: {{ selected }}</div>
+    <select v-model="selected">
+      <option disabled value="">Please select one</option>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+    <div>Selected: {{ selected }}</div>
+    <select v-model="selected" multiple>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+    <hr>
+
+    <div>
+      <!-- synced after "change" instead of "input" -->
+      <input v-model.lazy="msg" /> {{msg}}
+    </div>
+    <div>
+      <!-- automatically typecast as a number -->
+      <input v-model.number="age" /> {{age}}
+    </div>
+
+    <div>
+      <!-- trimmed automatically -->
+      <input v-model.trim="name" /> {{name}}
+    </div>
+
+  </div>
+
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          message: '',
+          checked: false,
+          checkedNames: [],
+          picked: '',
+          selected: '',
+          msg: '',
+          age: 0
+        }
+      },
+      methods: {
+        
+      }
+    }).mount('#app')
+  </script>
+  
+</body>
+</html>
