@@ -11,20 +11,23 @@
   <script src="https://unpkg.com/vue@3"></script>
 
   <div id="app">
+    <div :class="{ active: isActive }">Sơn Nguyễn</div>
+    <div :class="classObject">Sơn Nguyễn</div>
+    <div :class="[activeClass, errorClass]">Sơn Nguyễn</div>
   </div>
 
   <script>
     Vue.createApp({
       data() {
         return {
-          
+          isActive: true,
+          classObject: {
+            active: true,
+            'text-danger': true
+          },
+          activeClass: 'text-success',
+          errorClass: 'text-danger'
         }
-      },
-      computed: {
-        // computed chạy trước methods
-      },
-      methods: {
-        
       }
     }).mount('#app')
   </script>

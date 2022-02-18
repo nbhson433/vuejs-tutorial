@@ -11,17 +11,33 @@
   <script src="https://unpkg.com/vue@3"></script>
 
   <div id="app">
+    <!-- Style Binding -->
+    <div :style="{ color: activeColor, fontSize: fontSize + 'px' }">Sơn Nguyễn</div>
+    <!-- Object Binding -->
+    <div :style="styleObject">Sơn Nguyễn</div>
+    <!-- Multi Binding -->
+    <div :style="[style1, style2]">Sơn Nguyễn</div>
   </div>
 
   <script>
     Vue.createApp({
       data() {
         return {
-          
+          activeColor: 'red',
+          fontSize: 30,
+
+          styleObject: {
+            color: 'red',
+            fontSize: '13px'
+          },
+
+          style1: {
+            color: 'white'
+          },
+          style2: {
+            backgroundColor: 'black'
+          }
         }
-      },
-      computed: {
-        // computed chạy trước methods
       },
       methods: {
         
