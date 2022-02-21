@@ -11,21 +11,60 @@
   <script src="https://unpkg.com/vue@3"></script>
 
   <div id="app">
-    
+    <!-- Gọi luôn không cần tác động -->
+    <button @click="computedFunction">computedFunction</button>
+    <!-- Tác động (click) thì mới gọi -->
+    <button @click="methodFunction()">methodFunction</button>
+
+    <!-- Cả 2 gọi luôn không cần tác động -->
+    <!-- Khi data có sự thay đổi thì app sẽ render lại trừ computed vì chỉ được gọi 1 lần khi chương trình chạy  -->
+    {{computedFunction}}
+    {{methodFunction()}}
+
+    <hr>
+
+    A: {{tangA}}
+    B: {{tangB}}
+    <button @click="a++">Tăng A</button>
+    <button @click="b++">Tăng B</button>
   </div>
 
   <script>
     Vue.createApp({
       data() {
         return {
-          
+          a: 0,
+          b: 0,
+          author: {
+            name: 'John Doe',
+            books: [
+              'Vue 2 - Advanced Guide',
+              'Vue 3 - Basic Guide',
+              'Vue 4 - The Mystery'
+            ]
+          }
         }
       },
+      // chỉ chạy 1 lần, hoặc chỉ khi nó đang chứa data và data đó có sự thay đổi.
+      // chạy luôn ở template khi gọi, mà không cần tác động.
       computed: {
-        // computed chạy trước methods
+        computedFunction() {
+          console.log('computedFunction');
+        },
+        tangA() {
+          console.log('Tăng A');
+          return this.a
+        },
+        tangB() {
+          console.log('Tăng B');
+          return this.b
+        },
       },
+      // sẽ luôn được gọi khi bất kì data nào có sự thay đổi
       methods: {
-        
+        methodFunction() {
+          console.log('methodFunction');
+        },
       }
     }).mount('#app')
   </script>
