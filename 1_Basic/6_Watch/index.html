@@ -1,31 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
 
   <script src="https://unpkg.com/vue@3"></script>
 
   <div id="app">
-    
+    <p>
+      Ask a yes/no question:
+      <input v-model="question" />
+    </p>
+    <p>{{ answer }}</p>
+    <hr>
+    <button @click="number++">Change Number Value</button>
+    <hr>
+    <button @click="myObj.age++">Change Age In Obj</button>
+    {{myObj.age}}
   </div>
 
   <script>
     Vue.createApp({
       data() {
         return {
-          
+          number: 0,
+          question: '',
+          answer: 'Questions usually contain a question mark. ;-)',
+          myObj: {
+            name: 'Sơn',
+            age: 24
+          }
+        }
+      },
+      watch: {
+        // whenever question changes, this function will run
+        question(currentQuestion) {
+          if (currentQuestion.indexOf('?') > -1) {
+            this.getAnswer()
+          }
+        },
+        number(currentValue) { 
+          console.log(currentValue);
+        },
+        myObj: {
+          name(newValue, oldValue) {
+            console.log(newValue);
+          },
+          age(newValue, oldValue) {
+            console.log(newValue);
+          },
         }
       },
       methods: {
-        
+        async getAnswer() {
+          this.answer = 'Thinking...'
+          try {
+            const res = await fetch('https://yesno.wtf/api')
+            this.answer = (await res.json()).answer
+          } catch (error) {
+            this.answer = 'Error! Could not reach the API. ' + error
+          }
+        }
       }
     }).mount('#app')
   </script>
-  
+
 </body>
+
 </html>

@@ -11,7 +11,8 @@
   <script src="https://unpkg.com/vue@3"></script>
 
   <div id="app">
-    
+    <h1 v-if="false">v-if directive</h1> <!-- Hidden -->
+    <h1 v-show="false">v-show directive!</h1> <!-- Display: none -->
   </div>
 
   <script>
@@ -21,9 +22,6 @@
           
         }
       },
-      methods: {
-        
-      }
     }).mount('#app')
   </script>
   

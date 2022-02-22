@@ -11,14 +11,16 @@
   <script src="https://unpkg.com/vue@3"></script>
 
   <div id="app">
-    
+    <span v-once>This will never change: {{msg}}</span> <br>
+    {{msg}} <br>
+    <button @click="msg = 'Message has updated'">Update message</button>
   </div>
 
   <script>
     Vue.createApp({
       data() {
         return {
-          
+          msg: 'My message'
         }
       },
       methods: {
