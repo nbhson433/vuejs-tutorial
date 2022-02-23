@@ -11,18 +11,26 @@
   <script src="https://unpkg.com/vue@3"></script>
 
   <div id="app">
-    
+    <input ref="input" />
+
+    <ul>
+      <li v-for="item in list" ref="items">
+        {{ item }}
+      </li>
+    </ul>
   </div>
 
   <script>
     Vue.createApp({
       data() {
         return {
-          
+          list: [1, 2, 3]
         }
       },
-      methods: {
-        
+      mounted() {
+        this.$refs.input.focus()
+
+        console.log(this.$refs.items)
       }
     }).mount('#app')
   </script>
