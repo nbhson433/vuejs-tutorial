@@ -1,9 +1,6 @@
 <template>
-  <div>
-    {{name}}
-  </div>
-  <button class="btn btn-outline-success" @click="name = 'Nguyễn Bình Hồng Sơn'">Change Name</button>
-  <hello-work-component :name="name" :age="20"/>
+  <h3>App Component</h3> <!-- red -->
+  <hello-work-component /> <!-- blue -->
 </template>
 
 <script lang="ts">
@@ -14,7 +11,6 @@ export default defineComponent({
   name: 'App',
   data() {
     return {
-      name: 'Sơn Nguyễn'
     };
   },
   components: {
@@ -22,3 +18,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+h3 {
+  color: red;
+}
+</style>
