@@ -8,7 +8,13 @@
       class="btn btn-sm btn-outline-success"
       @click="changeName()"
     >
-      Change Name
+      Child Change Name
+    </button>
+    <button
+      class="btn btn-sm btn-outline-success"
+      @click="parentChangeName()"
+    >
+      Parent Change Name
     </button>
   </span>
 </template>
@@ -17,7 +23,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "HelloWorld",
+  name: "ChildOne",
   data() {
     return {
       nameAssign: ''
@@ -32,6 +38,7 @@ export default defineComponent({
     age: {
       type: Number,
     },
+    parentChangeName: Function
   },
   beforeUpdate() {
     this.nameAssign = this.name
