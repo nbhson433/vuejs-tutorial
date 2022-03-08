@@ -29,6 +29,17 @@ export default defineComponent({
       nameAssign: ''
     }
   },
+  emits: {
+    // Validate submit event
+    nameChange: (nameAssign: string) => {
+      if (nameAssign) {
+        return true
+      } else {
+        console.warn('Invalid submit event payload!')
+        return false
+      }
+    }
+  },
   props: {
     name: {
       type: String,
