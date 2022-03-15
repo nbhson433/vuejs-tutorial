@@ -11,8 +11,11 @@
   <script src="https://unpkg.com/vue@3"></script>
 
   <div id="app">
+    <!-- Class binding -->
     <div :class="{ active: isActive }">Sơn Nguyễn</div>
+    <!-- Object binding -->
     <div :class="classObject">Sơn Nguyễn</div>
+    <!-- Multi binding -->
     <div :class="[activeClass, errorClass]">Sơn Nguyễn</div>
   </div>
 

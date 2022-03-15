@@ -7,36 +7,45 @@
   <title>Document</title>
 </head>
 <body>
-
   <script src="https://unpkg.com/vue@3"></script>
 
   <div id="app">
-    <p>Using text interpolation: {{ rawHtml }}</p>
-    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
-    <p v-if="seen">v-if - Now you see me</p>
-    <p v-show="seen">v-show - Now you see me</p>
-    <p v-once>{{content}} - {{changeContent()}}</p>
-    <hr>
 
+    <!-- TEXT INTERPOLATION -->
+    <p>Using text interpolation: {{ rawHtml }}</p>
+
+    <!-- DIRECTIVE -->
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+    <p v-if="seen">v-if - Now you see me (display: none)</p>
+    <p v-show="seen">v-show - Now you see me (hidden element)</p>
+    <p v-once>{{content}} - {{changeContent()}}</p>
+
+    <!-- ATTRIBUTE BINDINGS -->
     <p>Attribute bindings: 
-      <span :id="dynamicId">Div</span>
+      <span v-bind:class="divClass">Div</span>
+      <span :class="divClass">Div</span>
       <button :disabled="isButtonDisabled">Button</button>
-      <a :href="google">Google</a>
-      <span :title="toTitleDate()">
-        {{ formatDate() }}
-      </span>
+      <a :href="googleLink">Google</a>
+      <span :title="toTitleDate()">{{ formatDate() }}</span>
     </p>
+
+    <!-- MULTI ATTRIBUTE BINDING -->
     <p>
       <div v-bind="objectOfAttrs">Multi attr binding</div>
     </p>
+
+    <!-- JS EXPRESSIONS -->
     <p>
       JavaScript Expressions (chỉ BIỂU THỨC mới hoạt động):
       {{ number + 1 }}
       {{ ok ? 'YES' : 'NO' }}
+      {{ myMessage.split('').reverse().join('') }}
+      <div :class="`list${divClass}`">use ES6 template string</div>
     </p>
-    <hr>
     
+    <!-- EVENT BINDING -->
     <p>
+      <button v-on:click="number++">Click me to number++</button>
       <button @click="number++">Click me to number++</button>
     </p>
   </div>
@@ -46,18 +55,19 @@
       data() {
         return {
           rawHtml: '<span style="color: red">This should be red.</span>',
-          dynamicId: '_dynamicId',
+          divClass: '_divClass',
           isButtonDisabled: true,
           objectOfAttrs: {
             id: 'container',
             class: 'wrapper'
           },
           number: 1,
-          seen: true,
-          google: 'https://google.com',
+          seen: false,
+          googleLink: 'https://google.com',
           facebook: 'https://facebook.com',
           date: new Date(),
-          content: 'Content'
+          content: 'Content',
+          myMessage: 'My message'
         }
       },
       methods: {

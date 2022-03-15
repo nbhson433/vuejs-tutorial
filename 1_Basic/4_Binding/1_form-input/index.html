@@ -12,73 +12,89 @@
 
   <div id="app">
 
-    <p>Message is: {{ message }}</p>
-    <input v-model="message" placeholder="edit me" />
-    <hr>
-
-    <span>Multiline message is:</span>
-    <p style="white-space: pre-line;">{{ message }}</p>
-    <textarea v-model="message" placeholder="add multiple lines"></textarea>
-    <hr>
-
-    <input type="checkbox" v-model="checked" />
-    <label for="checkbox">{{ checked }}</label>
-
-    <div>Checked names: {{ checkedNames }}</div>
-    <input type="checkbox" value="Jack" v-model="checkedNames">
-    <label for="jack">Jack</label>
-
-    <input type="checkbox" value="John" v-model="checkedNames">
-    <label for="john">John</label>
-
-    <input type="checkbox" value="Mike" v-model="checkedNames">
-    <label for="mike">Mike</label>
-    <hr>
+    <!-- TEXT -->
+    <p>
+      <input v-model="text" placeholder="Edit me" />
+      Message is: {{ text }}
+    </p>
     
-    <div>Picked: {{ picked }}</div>
-    <input type="radio" value="One" v-model="picked" />
-    <label for="one">One</label>
+    <!-- MULTILINE TEXT -->
+    <p>
+      <span>Multiline message is:</span>
+      <p style="white-space: pre-line;">{{ textMultiLine }}</p>
+      <textarea v-model="textMultiLine" placeholder="Add multiple lines"></textarea>
+    </p>
 
-    <input type="radio" value="Two" v-model="picked" />
-    <label for="two">Two</label>
-    <hr>
+    <!-- CHECKBOX -->
+    <p>
+      <input type="checkbox" v-model="checked" />
+      <label for="checkbox">{{ checked }}</label>
+    </p>
 
-    <div>Selected: {{ selected }}</div>
-    <select v-model="selected">
-      <option disabled value="">Please select one</option>
-      <option>A</option>
-      <option>B</option>
-      <option>C</option>
-    </select>
-    <div>Selected: {{ selected }}</div>
-    <select v-model="selected" multiple>
-      <option>A</option>
-      <option>B</option>
-      <option>C</option>
-    </select>
-    <hr>
+    <!-- MULTI CHECKBOX -->
+    <p>
+      <input type="checkbox" value="Jack" v-model="checkedNames">
+      <label for="jack">Jack</label>
+  
+      <input type="checkbox" value="John" v-model="checkedNames">
+      <label for="john">John</label>
+  
+      <input type="checkbox" value="Mike" v-model="checkedNames">
+      <label for="mike">Mike</label>
 
-    <div>
+      <div>Checked names: {{ checkedNames }}</div>
+    </p>
+    
+    <!-- RADIO -->
+    <p>
+      <input type="radio" value="One" v-model="picked" />
+      <label for="one">One</label>
+  
+      <input type="radio" value="Two" v-model="picked" />
+      <label for="two">Two</label>
+
+      <div>Picked: {{ picked }}</div>
+    </p>
+    
+    <!-- SELECT -->
+    <p>
+      <div>Selected: {{ selected }}</div>
+      <select v-model="selected">
+        <option disabled value="">Please select one</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+    </p>
+    
+    <!-- MULTI SELECT -->
+    <p>
+      <div>Selected: {{ selected }}</div>
+      <select v-model="selected" multiple>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+    </p>
+    
+  <!-- MODIFIERS -->
+    <p>
       <!-- synced after "change" instead of "input" -->
       <input v-model.lazy="msg" /> {{msg}}
-    </div>
-    <div>
       <!-- automatically typecast as a number -->
       <input v-model.number="age" /> {{age}}
-    </div>
-
-    <div>
       <!-- trimmed automatically -->
       <input v-model.trim="name" /> {{name}}
-    </div>
-
+    </p>
+   
   </div>
 
   <script>
     Vue.createApp({
       data() {
         return {
-          message: '',
+          text: '',
+          textMultiLine: '',
           checked: false,
           checkedNames: [],
           picked: '',
@@ -86,9 +102,6 @@
           msg: '',
           age: 0
         }
-      },
-      methods: {
-        
       }
     }).mount('#app')
   </script>

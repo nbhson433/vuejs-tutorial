@@ -14,44 +14,40 @@
 
   <div id="app">
     <h3>Mouse event</h3>
-    <!-- variable -->
-    <button @click="couter++">Click me!</button>
-    <p>Couter: {{couter}}</p>
+    <!-- INLINE HANDLE -->
+    <p>
+      <button @click="couter++">Click me!</button>
+      Couter: {{couter}}
+    </p>
 
-    <!-- function -->
-    <button @mouseover="greet()">Hover me!</button>
+    <!-- METHOD HANDLE -->
+    <p>
+      <button @mouseover="greet()">Hover me!</button>
+      <button @mouseout="say('hello')">Mouseout to Say hello</button>
+      <button @click="warn('Form cannot be submitted yet.', $event)">
+        Submit
+      </button>
+    </p>
 
-    <!-- function param -->
-    <button @mouseout="say('hello')">Mouseout to Say hello</button>
-    <button @mouseout="say('bye')">Mouseout to Say bye</button>
-
-    <!-- using $event special variable -->
-    <button @click="warn('Form cannot be submitted yet.', $event)">
-      Submit
-    </button>
-
-    <!-- using $event as arrow function -->
-    <button @click="(event) => warn('Form cannot be submitted yet.', event)">
-      Submit
-    </button>
-
-   
+    <!-- EVENT MODIFIERS -->
     <p>
       <!-- .stop .prevent .self .capture .once .passive -->
-      <!-- the submit event will no longer reload the page -->
       <a href="https://google.com" @click.prevent>Prevent</a>
     </p>
 
     <hr>
 
     <h3>Keyboard event</h3>
-    <input @keyup="keyupFunc" placeholder="Keyup event"/>
-    <input @keyup.page-down="kupdownFunc" placeholder="Pagedown event"/>
-    <input @keyup.alt.enter="clear" placeholder="alt + enter"/>
-    <div @click.ctrl="ctrlClick">Click + trl</div>
+    <p>
+      <!-- .enter .tab .delete .esc .space .up .down .left .right -->
+      <input @keyup="keyupFunc" placeholder="Keyup event"/>
+      <input @keyup.page-down="kupdownFunc" placeholder="Pagedown event"/>
+      <input @keyup.alt.enter="clear" placeholder="alt + enter"/>
+      <button @click.ctrl="ctrlClick">Click + trl</button>
+    </p>
 
     <!-- chỉ khi nhấn 1 phím ctrl và không nhấn phím nào khác -->
-    <button @click.ctrl.exact="onCtrlClick">A</button>
+    <button @click.ctrl.exact="onCtrlClick">Only Press Ctrl</button>
   </div>
 
   <script>

@@ -15,14 +15,19 @@
   <div id="app">
     <p>
       Ask a yes/no question:
-      <input v-model="question" />
+      <input v-model="question" title="Questions usually contain a question mark." />
     </p>
-    <p>{{ answer }}</p>
-    <hr>
-    <button @click="number++">Change Number Value</button>
-    <hr>
-    <button @click="myObj.age++">Change Age In Obj</button>
-    {{myObj.age}}
+    <p>Answer: {{ answer }}</p>
+    <p>
+      <button @click="number++">Change Number Value</button>
+      {{number}}
+    </p>
+
+    <p>
+      <button @click="myObj.age++">Change Age In Obj</button>
+      {{myObj}}
+    </p>
+    
   </div>
 
   <script>
@@ -31,7 +36,7 @@
         return {
           number: 0,
           question: '',
-          answer: 'Questions usually contain a question mark. ;-)',
+          answer: '--',
           myObj: {
             name: 'Sơn',
             age: 24
@@ -48,6 +53,7 @@
         number(currentValue) { 
           console.log(currentValue);
         },
+        // not working ?
         myObj: {
           name(newValue, oldValue) {
             console.log(newValue);

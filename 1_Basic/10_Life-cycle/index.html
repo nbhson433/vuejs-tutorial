@@ -12,9 +12,14 @@
 
   <div id="app">
     {{title}}
+
+    <!-- Chạy sau beforeMounted nhưng chạy trước mounted  -->
+    <!-- beforeMounted -> computed -> method -> mounted  -->
     {{myComputed}}
     {{myMethod()}}
 
+    <!-- watch chạy trước beforeUpdate -->
+    <!-- watch ->beforeUpdate -> updated -->
     <button ref="button" @click="title = 'Changed with event click'">Update Event</button>
 
     <!-- 
