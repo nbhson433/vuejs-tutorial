@@ -24,6 +24,7 @@ export default defineComponent({
   },
   created() {
     this.emitter.on('changeAge', (age) => {
+      console.log('Trigger');
       this.age = age
     })
     this.age = this.ageProp

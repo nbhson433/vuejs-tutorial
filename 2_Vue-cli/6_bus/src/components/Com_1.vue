@@ -1,7 +1,7 @@
 <template>
   <h3>
     [Component 1] <br>
-    Age: {{age}}
+    Age: {{age}} <br>
     <button @click="changeAge">Change age</button>
   </h3>
 </template>
