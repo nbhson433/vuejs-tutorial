@@ -1,22 +1,28 @@
 <template>
-  <div>Parent Component: {{ name }}</div>
-  <button 
-    class="btn btn-sm btn-outline-success" 
-    @click="name = 'Phương Trinh'">
-    Change Name
-  </button>
-  <hr />
-  <child-1 
-    :name="name" 
-    :age="age" 
-    @nameChange="name = $event" 
-    :parentChangeName="parentChangeName"
-  />
-  <hr>
-  <child-2 
-    :age="age" 
-    @changeAge="age = $event"
-  />
+  <p>
+    <button 
+      class="btn btn-sm btn-outline-success" 
+      @click="name = 'Phương Trinh'">
+      Change Name
+    </button>
+    {{ name }}
+  </p>
+  
+  <p>
+    <child-1 
+      :name="name" 
+      :age="age" 
+      :parentChangeName="parentChangeName"
+      @nameChange="name = $event" 
+    />
+  </p>
+
+  <p>
+    <child-2 
+      :age="age" 
+      @changeAge="age = $event"
+    />
+  </p>
 </template>
 
 <script lang="ts">
@@ -32,13 +38,13 @@ export default defineComponent({
   },
   data() {
     return {
-      name: "Sơn Nguyễn",
+      name: "[Parent] Sơn Nguyễn",
       age: 20
     };
   },
   methods: {
-    parentChangeName() {
-      this.name = 'Sơn Nguyễn'
+    parentChangeName(param: string) {
+      this.name = `[Parent] Sơn Nguyễn - ${param}`
     }
   }
 });

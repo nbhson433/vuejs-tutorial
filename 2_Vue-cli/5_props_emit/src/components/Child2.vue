@@ -1,11 +1,12 @@
 <template>
-  Component Child 2: {{age}}
   <button
       class="btn btn-sm btn-outline-success"
       @click="changeAge()"
     >
       Change Age
     </button>
+    <br>
+    {{age}}
 </template>
 
 <script lang="ts">

@@ -1,9 +1,5 @@
 <template>
   <span class="hello">
-    {{ name }} - {{ age }}
-
-    <br />
-    {{ reverseName() }}
     <button
       class="btn btn-sm btn-outline-success"
       @click="changeName()"
@@ -12,10 +8,13 @@
     </button>
     <button
       class="btn btn-sm btn-outline-success"
-      @click="parentChangeName()"
+      @click="parentChangeName('param')"
     >
       Parent Change Name
     </button>
+     
+    <br>
+    {{ nameAssign }} - {{ age }}
   </span>
 </template>
 
@@ -24,11 +23,6 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "ChildOne",
-  data() {
-    return {
-      nameAssign: ''
-    }
-  },
   emits: {
     // Validate submit event
     nameChange: (nameAssign: string) => {
@@ -51,13 +45,15 @@ export default defineComponent({
     },
     parentChangeName: Function
   },
+  data() {
+    return {
+      nameAssign: this.name
+    }
+  },
   beforeUpdate() {
     this.nameAssign = this.name
   },
   methods: {
-    reverseName() {
-      return this.name?.split("").reverse().join("");
-    },
     changeName() {
      this.nameAssign = 'Sơn Nguyễn'
      this.$emit('nameChange', this.nameAssign)
