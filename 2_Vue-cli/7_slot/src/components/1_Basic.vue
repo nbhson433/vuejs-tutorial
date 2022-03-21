@@ -1,6 +1,6 @@
 <template>
-  <button class="submit-btn">
-    <slot>Submit</slot> <!-- slot outlet -->
+  <button class="btn btn-success">
+    <slot></slot> <!-- slot outlet -->
   </button>
 </template>
 
@@ -8,7 +8,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'SubmitButton',
+  name: 'SlotContentAndOutlet',
   data() {
     return {
     }

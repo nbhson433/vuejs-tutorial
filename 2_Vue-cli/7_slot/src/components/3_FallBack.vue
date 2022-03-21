@@ -1,6 +1,6 @@
 <template>
-  <button class="fancy-btn">
-    <slot></slot> <!-- slot outlet -->
+  <button class="btn btn-success" type="submit">
+    <slot>Submit</slot>
   </button>
 </template>
 
@@ -8,7 +8,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'FancyButton',
+  name: 'FallbackContent',
   data() {
     return {
     }
