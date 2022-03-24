@@ -25,7 +25,7 @@
         <h1>Here might be a page title</h1>
       </template>
 
-      <template #default>
+      <template #default> <!-- DEFAULT -->
         <p>A paragraph for the main content.</p>
         <p>And another one.</p>
       </template>
