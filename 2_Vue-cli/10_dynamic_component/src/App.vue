@@ -16,9 +16,10 @@
       Dashboard
     </button>
 
-    <div>
+    <!-- keep life circle-->
+    <KeepAlive> 
       <component :is="activeComponent"></component>
-    </div>
+    </KeepAlive>
   </div>
 </template>
 

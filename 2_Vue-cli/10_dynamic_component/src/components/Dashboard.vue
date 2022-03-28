@@ -14,5 +14,14 @@ export default defineComponent({
 
     }
   },
+  created() {
+    console.log('Created');
+  },
+  activated() {
+    console.log('Activated');
+  },
+  deactivated() {
+    console.log('Deactivated');
+  }
 });
 </script>
