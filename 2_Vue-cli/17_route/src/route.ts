@@ -1,52 +1,48 @@
 import * as VueRouter from 'vue-router';
-import HomeComponent from './components/Home.vue';
-import AboutComponent from './components/About.vue';
-import DashboardComponent from './components/Dashboard.vue';
-import UserComponent from './components/User.vue';
-import NotFoundComponent from './components/NotFound.vue';
-import TrainingComponent from './components/Training.vue';
-
-import TrainingVue from './components/TrainingVue.vue';
-import TrainingReact from './components/TrainingReact.vue';
-import TrainingAngular from './components/TrainingAngular.vue';
 
 const routes = [
-  { path: '/', component: HomeComponent },
+  { path: '/', component: () => import('./components/Home.vue') },
   {
     path: '/about',
-    component: AboutComponent,
-  },
+    component: () => import('./components/About.vue'),
+  }, // lazy load
   {
     path: '/dashboard',
-    component: DashboardComponent,
-  },
+    name: 'dashboard',
+    component: () => import('./components/Dashboard.vue'),
+    beforeEnter: (to: any, from: any, next: any) => {
+      if (to.name === 'dashboard') {
+        next()
+      }
+    },
+  }, // guard 
   {
     path: '/user/:id',
     name: 'user',
-    component: UserComponent,
+    component: () => import('./components/User.vue'),
   }, // dynamic
   {
     path: '/training',
-    component: TrainingComponent,
+    component: () => import('./components/TrainingVue.vue'),
     children: [
       {
         path: 'vuejs',
-        component: TrainingVue,
+        component: () => import('./components/TrainingVue.vue'),
       },
       {
         path: 'reactjs',
-        component: TrainingReact,
+        component: () => import('./components/TrainingReact.vue'),
       },
       {
         path: 'angularjs',
-        component: TrainingAngular,
+        component: () => import('./components/TrainingAngular.vue'),
       },
     ],
   }, // child
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: NotFoundComponent,
+    component: () => import('./components/NotFound.vue'),
   }, // 404
 ];
 
@@ -66,5 +62,11 @@ const router = VueRouter.createRouter({
     }
   }
 });
+
+// Global
+// router.beforeEach((to, from, next) => {
+//   if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
+//   else next()
+// })
 
 export default router;

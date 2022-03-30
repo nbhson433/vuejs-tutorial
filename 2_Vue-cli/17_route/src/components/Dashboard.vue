@@ -10,5 +10,10 @@ export default defineComponent({
   data() {
     return {};
   },
+  beforeRouteLeave (to, from, next) {
+    if (to.name !== 'dashboard') {
+      next()
+    }
+  }
 });
 </script>
