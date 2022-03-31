@@ -1,4 +1,5 @@
 <template>
+  <!-- class "large": in div -->
   <div>
     <button class="btn btn-success">click me</button>
   </div>
