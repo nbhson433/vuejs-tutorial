@@ -33,6 +33,7 @@
     <p>
       <!-- .stop .prevent .self .capture .once .passive -->
       <a href="https://google.com" @click.prevent>Prevent</a>
+      <a href="https://google.com" @click.prevent="preventEvent($event)">Prevent</a>
     </p>
 
     <hr>
@@ -85,6 +86,9 @@
         },
         onCtrlClick() {
           alert('onCtrlClick')
+        },
+        preventEvent(event) {
+          console.log('Prevented!');
         }
       }
     }).mount('#app')

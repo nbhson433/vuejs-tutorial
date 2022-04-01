@@ -43,6 +43,11 @@
           }
         }
       },
+      created() {
+        this.$watch('number', (newNumber) => {
+          console.log(newNumber);
+        })
+      },
       watch: {
         // whenever question changes, this function will run
         question(currentQuestion) {
